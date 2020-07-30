@@ -1,0 +1,7 @@
+<form method="POST">
+    {%csrf_token%}
+    {{user_form.as_p}}
+    {% if request.role == "Admin" %}
+    <button type="submit" value="Submit">Add</button>
+    {% endif %}
+</form>

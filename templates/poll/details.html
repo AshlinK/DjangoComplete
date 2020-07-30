@@ -1,0 +1,17 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+{% if question %}
+<h3>Detail Page</h3>
+<h2>{{question.title}}</h2>
+{% for choice in question.choices %}
+<p>{{choice.title}} {{choice.vote_counts}}</p>
+{% empty %}
+<p> There are no choice available for this question.</p>
+{% endfor %}
+<p>Poll is created by {{question.created_by.first_name}}</p>
+
+{% else %}
+<p> There is no question available</p>
+{% endif %}
+{% endblock %}

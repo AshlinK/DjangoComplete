@@ -1,0 +1,25 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+{% if question %}
+<h3>Vote Page</h3>
+<h2>{{question.title}}</h2>
+<form method="POST" action="{% url 'poll:single_poll' question.id %}">
+    {% csrf_token %}
+    {% for choice in question.choices %}
+    <label>{{choice.title}}</label>
+    <input type="radio" name="choice" value="{{choice.id}}">
+    {% empty %}
+    <p> There are no choice available for this question.</p>
+    {% endfor %}
+    <br>
+    <button type="submit" value="Submit">Vote</button>
+</form>
+
+
+<p>Poll is created by {{question.created_by.first_name}}</p>
+
+{% else %}
+<p> There is no question available</p>
+{% endif %}
+{% endblock %}

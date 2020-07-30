@@ -1,0 +1,18 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+
+<p>Polls Count: {{polls_count}}</p>
+
+{% if questions %}
+<ul>
+    {% for question in questions %}
+    <li>
+        {{question.title}}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p> There are no questions available</p>
+{% endif %}
+{% endblock %}

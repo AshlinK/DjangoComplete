@@ -1,0 +1,17 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+
+<h1>{{title}}</h1>
+<table>
+    {% for user in users %}
+    <td>
+        <tr>{{user.first_name}} &nbsp; <a href="{% url 'employee:emp_edit' user.id %}">Edit</a> &nbsp;<a
+                href="{% url 'employee:emp_delete' user.id%}">Delete</a></tr>
+    </td><br>
+    {% endfor %}
+
+
+    {{"ashlin karkada is working for firstrand"|truncatewords:3}}
+</table>
+{% endblock %}

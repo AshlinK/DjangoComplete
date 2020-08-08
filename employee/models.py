@@ -19,5 +19,18 @@ class Profile(models.Model):
         else:
             instance.profile.save()
 
+class EmployeeManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(profile__desgination='Employee')
 
-    
+
+class Employee(User):
+    class Meta:
+        ordering=('-username',)
+        proxy=True
+
+    objects=EmployeeManager()
+
+    def full_name(self):
+        return self.first_name+" "+self.last_name
+

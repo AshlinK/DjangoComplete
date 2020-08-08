@@ -1,4 +1,5 @@
 {% extends 'employee/base.html' %}
+{% load polls_extras %}
 
 {% block content %}
 
@@ -10,7 +11,18 @@
                 href="{% url 'employee:emp_delete' user.id%}">Delete</a></tr>
     </td><br>
     {% endfor %}
-
+    <td>
+        {% recent_polls as questions %}
+        <h3>Question Set</h3>
+        <tr>
+            {% if questions %}
+            {% for question in questions %}
+            <a href="{% url 'poll:polls-details' question.id %}">
+                {{question.title}}
+            </a><br>
+            {% endfor %} </tr>
+        {% endif %}
+    </td>
 
     {{"ashlin karkada is working for firstrand"|truncatewords:3}}
 </table>

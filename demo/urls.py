@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from employee.views import user_login,success,logout
+from employee.views import user_login,success,logout,ProfileUpdate,MyProfile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,7 @@ urlpatterns = [
     path('login/',user_login,name="user_login"),
     path('success/',success,name="success"),
     path('logout/',logout,name="user_logout"),
+    path('profile/',MyProfile.as_view(),name='my_profile'),
+    path('profile/update',ProfileUpdate.as_view(),name='profile_update'),
 
 ]

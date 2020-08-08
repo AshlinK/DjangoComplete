@@ -1,0 +1,14 @@
+{% extends 'poll/base.html' %}
+
+{% block content %}
+<h4>Employee Details page</h4>
+
+First Name: <p>{{object.user.first_name}}</p> <br>
+Last Name: <p>{{object.user.last_name}}</p> <br>
+Salary: <p>{{object.salary}}</p> <br>
+Designation: <p>{{object.designation}}</p> <br>
+
+<a href="{% url 'profile_update' %}">Edit</a>
+
+
+{% endblock %}

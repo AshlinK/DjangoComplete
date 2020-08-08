@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from demo.decorators import role_required
+from django.views.generic.edit import UpdateView
+from django.views.generic import ListView,DetailView
+from django.urls import reverse_lazy
 
 
 def user_login(request):
@@ -110,3 +113,18 @@ def employee_delete(request,id):
             return HttpResponseRedirect(reverse('employee:emp_list'))
     return HttpResponseRedirect(reverse("user_login"))
     
+class ProfileUpdate(UpdateView):
+    
+    fields=['desgination','salary']
+    template_name='auth/profile_update.html'
+    success_url=reverse_lazy("my_profile")
+    
+
+    def get_object(self):
+        return self.request.user.profile
+        
+class MyProfile(DetailView):
+    template_name='auth/profile.html'
+
+    def get_object(self):
+        return self.request.user.profile
